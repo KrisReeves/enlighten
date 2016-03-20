@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Enlighten Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="enlighten.js"></script>  
+	<style>
+        li.enlightenRow {
+            list-style-type: none;
+            padding: 5px;
+        }
+
+        ul.demoBody {
+            border: 1px solid black;
+            width: 50%;
+            background: #F6F6F6;
+            padding: 5px;
+            font-size: 100%;
+            line-height: 1;
+            font-family:"Arial";
+        }
+                
+	</style>
+</head>
+<body>
+
+<ul id="demoBody" class="demoBody">
+    
+</ul>
+
+<script>
+$(document).ready(function() {
+    
+    for(var i=0; i < 20; i++){
+        $("#demoBody").append('<li class="enlightenRow">Item ' + (i + 1) + '</li>');
+    }
+
+    $("#demoBody").enlighten();
+});
+</script>
+</body>
+</html>
