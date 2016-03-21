@@ -37,47 +37,54 @@
             
             return decimalValue;
         };
+        
+        var getRGBDecimal = function(val){
+            var rgb = {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            };
+            
+            if(val.indexOf("rgb") > -1){
+                rgb = $.extend(rgb, getRGBFromRGB(val));
+            }
+            
+            if(val.indexOf("#") > -1){
+                rgb = $.extend(rgb, getRGBFromHex(val));
+            }
+            
+            return rgb;
+        };
+        
+        var getRGBFromRGB = function(val) {
+            var rgb = val.substring(val.indexOf("(") + 1, val.length - 1).split(", ");
+            return {
+                "red": parseInt(rgb[0]),
+                "green": parseInt(rgb[1]),
+                "blue": parseInt(rgb[2])
+            };
+        };
+        
+        var getRGBFromHex = function(val) {
+            var rgb = val.substr(val.indexOf("#") + 1);
+            return {
+                "red": parseInt(rgb.slice(0,2), 16),
+                "green": parseInt(rgb.slice(2,4), 16),
+                "blue": parseInt(rgb.slice(4,6), 16)
+            };
+        };
        
-        var changeColor = function changeColor(currentColor, changeAmount) {
-            var redDec, blueDec, greenDec;
-            
-            if(currentColor.indexOf("rgb") > -1){
-                currentColor = currentColor.replace("rgb", "");
-                currentColor = currentColor.replace("a", "");
-                currentColor = currentColor.replace("(", "");
-                currentColor = currentColor.replace(")", "");
-                var rgb = currentColor.split(",");
-                
-                redDec =  parseInt(rgb[0].trim());
-                blueDec =  parseInt(rgb[1].trim());
-                greenDec =  parseInt(rgb[2].trim());
-            }
-            
-            if(currentColor.indexOf("#") > -1){
-                currentColor = currentColor.replace("#", "");
-                                              
-                var redHex = currentColor.slice(0,2);
-                var blueHex = currentColor.slice(2,4);
-                var greenHex = currentColor.slice(4,6);
-                
-                redDec =  parseInt(redHex, 16);
-                blueDec =  parseInt(blueHex, 16);
-                greenDec =  parseInt(greenHex , 16);
-            }
-                        
-            var newRedDec = setColorLimits(redDec + changeAmount);
-            var newBlueDec = setColorLimits(blueDec + changeAmount);
-            var newGreenDec = setColorLimits(greenDec + changeAmount);         
-                        
-            var newRedHex = pad(newRedDec.toString(16));
-            var newBlueHex = pad(newBlueDec.toString(16));
-            var newGreenHex = pad(newGreenDec.toString(16));
-            
-            return "#" + newRedHex + newBlueHex + newGreenHex;        
+        var changeColor = function changeColor(currentColor, changeAmount) {           
+            var rgb = getRGBDecimal(currentColor);
+                                
+            return "#" + 
+                pad(setColorLimits(rgb.red + changeAmount).toString(16)) + 
+                pad(setColorLimits(rgb.green + changeAmount).toString(16)) + 
+                pad(setColorLimits(rgb.blue + changeAmount).toString(16));        
         };
         
         var pad = function(val) {
-            return ('00' + val).substr(-2); 
+            return ("00" + val).substr(-2); 
         };
 
         var currentColor = settings.baseColor;
