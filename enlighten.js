@@ -85,8 +85,11 @@
         // Apply effect to each item.               
         for(var i=0; i < settings.itemStep; i++){   
             var el = $(this).find(getRowSelector(i));
-            el.css("background-color", currentColor);
-            currentColor = getNextColor(el.css("background-color"));
+            
+            if(el.length > 0){
+                el.css("background-color", currentColor);
+                currentColor = getNextColor(el.css("background-color"));
+            }
         }
         
         $(this).find("." + settings.classDecorator).each(function () {
