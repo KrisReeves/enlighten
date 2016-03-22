@@ -8,3 +8,7 @@ For a long time as developers, we have performed a light/dark row background for
 
 I recently read an article that mentioned the optimum color change is every 3 rows.  That gave me the idea to create a plugin that
 allows the user to specify the row interval - every 2, 3, 5, up to 'n' and 'BaseColor' to which to start the lightening/darkening effect.
+
+https://github.com/KrisReeves/enlighten/blob/master/Every2.PNG
+https://github.com/KrisReeves/enlighten/blob/master/Every3.PNG
+https://github.com/KrisReeves/enlighten/blob/master/EveryN.PNG
