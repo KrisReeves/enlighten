@@ -1,7 +1,7 @@
 # enlighten
 Enlighten jQuery Plugin
 
-This jQuery plugin allows the user to add a systematic lightening or darkening effect to the background color of row like 
+This jQuery plugin allows the user to add a systematic lightening or darkening effect to the background color of repetitive row like 
 structures in HTML (repetitive tr's, li's, div's, etc.).
 
 For a long time as developers, we have performed a light/dark row background for tabuar data using the modulo operator.  Depending on the result we create an every-other row light/dark effect.
